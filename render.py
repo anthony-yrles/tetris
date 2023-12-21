@@ -1,8 +1,17 @@
 import pygame as Py
 from globals import *
+import states as STATES
 
 def render(font, tetris_font):
+    menu = get_menu()
+    match menu:
+        case STATES.MENU:
+            render_menu(tetris_font, font)
+        case STATES.NORMAL:
+            render_normal_mode()
+    Py.display.flip()
 
+def render_menu(tetris_font, font):
     Py.draw.rect(screen, Py.Color(255, 255, 255), rect_tetriste)
     screen.blit(image_bcg_menu, (0,0))
     text_titre = tetris_font.render('Tetriste', True, (255, 0, 0))
@@ -28,4 +37,6 @@ def render(font, tetris_font):
     text_hall_of_fame = font.render('Hall of Fame', True, (255, 0, 0))
     hall_of_fame_text = text_hall_of_fame.get_rect(center=barre_rect_hall_of_fame.center)
     screen.blit(text_hall_of_fame, hall_of_fame_text)
-    Py.display.flip()
+
+def render_normal_mode():
+    screen.blit(image_bcg_menu, (0,0))

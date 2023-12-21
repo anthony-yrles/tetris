@@ -1,6 +1,7 @@
 import pygame as Py
 from globals import *
 from render import *
+from event import *
 
 Py.init()
 
@@ -13,3 +14,4 @@ while continuer:
     for event in Py.event.get():
         if event.type == Py.QUIT:
             continuer = False
+        normal(event, barre_rect_normal)
