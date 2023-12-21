@@ -1,14 +1,15 @@
 import pygame as Py
-from globals import *
 import states as STATES
+from globals import *
+from tetramino import *
 
-def render(font, tetris_font):
+def render(font, tetris_font, forme, x, y):
     menu = get_menu()
     match menu:
         case STATES.MENU:
             render_menu(tetris_font, font)
         case STATES.NORMAL:
-            render_normal_mode()
+            render_normal_mode(forme, x, y)
     Py.display.flip()
 
 def render_menu(tetris_font, font):
@@ -38,5 +39,11 @@ def render_menu(tetris_font, font):
     hall_of_fame_text = text_hall_of_fame.get_rect(center=barre_rect_hall_of_fame.center)
     screen.blit(text_hall_of_fame, hall_of_fame_text)
 
-def render_normal_mode():
-    screen.blit(image_bcg_menu, (0,0))
+def render_normal_mode(forme, x, y):
+    screen.blit(image_bcg_normal, (0,0))
+    Py.draw.rect(screen, 'black', rect_display_game)
+    for i in range(number_of_tile_y):
+        for j in range(number_of_tile_x):
+            rect_interior_game = Py.Rect((1 + 200) + j * 20, (1 + 0) + i * 20, 19, 19)
+            Py.draw.rect(screen, 'white', rect_interior_game)
+    draw_tetra(forme, x, y)

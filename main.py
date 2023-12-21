@@ -10,7 +10,7 @@ tetris_font = Py.font.Font('./assets/font/Tetris.ttf', 60)
 font = Py.font.SysFont(None, 70)
 
 while continuer:
-    render(font, tetris_font)
+    render(font, tetris_font, forme_1, 400, 0)
     for event in Py.event.get():
         if event.type == Py.QUIT:
             continuer = False
