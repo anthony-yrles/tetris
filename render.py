@@ -45,7 +45,7 @@ def render_normal_mode(tetramino):
     Py.draw.rect(screen, 'black', rect_display_game)
     for i in range(number_of_tile_y):
         for j in range(number_of_tile_x):
-            rect_interior_game = Py.Rect((1 + 200) + j * 20, (1 + 0) + i * 20, 19, 19)
+            rect_interior_game = Py.Rect(grid_start_x + j * tile_size + 1, grid_start_y + i * tile_size + 1, tile_size - 1, tile_size - 1)
             Py.draw.rect(screen, 'white', rect_interior_game)
     dessiner_tetramino(tetramino)
 

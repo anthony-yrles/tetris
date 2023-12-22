@@ -17,5 +17,6 @@ while continuer:
         if event.type == Py.QUIT:
             continuer = False
         normal(event, barre_rect_normal)
-    clock.tick(1)
+        mouvement(event, tetramino)
+    clock.tick(60)
     Py.display.update()

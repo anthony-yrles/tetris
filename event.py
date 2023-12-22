@@ -1,5 +1,6 @@
 import pygame as Py
 from globals import *
+from collision import *
 
 def normal(event, barre_rect_normal):
     if event.type == Py.MOUSEBUTTONDOWN:
@@ -7,8 +8,14 @@ def normal(event, barre_rect_normal):
         if barre_rect_normal.collidepoint(pos):
             menu_on_clic = 1
             set_menu(menu_on_clic)
-    elif event.type == Py.KEYDOWN:
+
+def mouvement(event, tetramino):
+    if event.type == Py.KEYDOWN:
         if event.key == Py.K_LEFT:
-            set_x_moins()
+            direction = (-1, 0)
+            if test_collision(direction, tetramino):
+                set_tetraminos_x_LEFT()
         elif event.key == Py.K_RIGHT:
-            set_x_plus()
+            direction = (1, 0)
+            if test_collision(direction, tetramino):
+                set_tetraminos_x_RIGHT()
