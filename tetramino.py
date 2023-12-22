@@ -1,7 +1,16 @@
 from globals import *
+import random
 
-def draw_tetra(forme, x, y):
-    for i in range(len(forme)):
-        for j in range(len(forme[i])):
-            if forme[i][j] == 1:
-                Py.draw.rect(screen, 'blue', (x + j * 20, y + i * 20, 20, 20))
+def dessiner_tetramino(tetramino):
+    x = get_x()
+    y = get_y()
+    taille_cote = 20
+    for coord in tetramino:
+        rect_x = x + coord[1] * taille_cote
+        rect_y = y + coord[0] * taille_cote
+        Py.draw.rect(screen, 'blue', (rect_x, rect_y, taille_cote, taille_cote))
+    set_y()
+
+def random_tetramino(tetraminos):
+    tetramino = random.choice(tetraminos)
+    return tetramino
