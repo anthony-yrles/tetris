@@ -47,17 +47,28 @@ grid = [[0] * 20 for _ in range(30)]
 tetraminos_x = 10
 tetraminos_y = 0
 
-def set_tetraminos_x_LEFT():
-    global tetraminos_x
-    tetraminos_x -= 1
+def set_grid(tetramino, draw_x, draw_y, taille_cote):
+    global grid
+    for coord in tetramino:
+        x = (draw_x + coord[1] * taille_cote - grid_start_x) // tile_size
+        y = (draw_y + coord[0] * taille_cote) // tile_size
+        grid[y][x] = 1
 
-def set_tetraminos_x_RIGHT():
+def set_tetraminos_x(value):
     global tetraminos_x
-    tetraminos_x += 1
+    if value == 1:
+        tetraminos_x += 1
+    elif value == -1:
+        tetraminos_x -= 1
+    else:
+        tetraminos_x = value
 
-def set_tetraminos_y():
+def set_tetraminos_y(value):
     global tetraminos_y
-    tetraminos_y += 1
+    if value == 1:
+        tetraminos_y += 1
+    else:
+        tetraminos_y = value
 
 def get_tetraminos_x():
     global tetraminos_x

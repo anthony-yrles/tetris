@@ -13,9 +13,11 @@ def mouvement(event, tetramino):
     if event.type == Py.KEYDOWN:
         if event.key == Py.K_LEFT:
             direction = (-1, 0)
+            value = -1
             if test_collision(direction, tetramino):
-                set_tetraminos_x_LEFT()
+                set_tetraminos_x(value)
         elif event.key == Py.K_RIGHT:
             direction = (1, 0)
+            value = 1
             if test_collision(direction, tetramino):
-                set_tetraminos_x_RIGHT()
+                set_tetraminos_x(value)

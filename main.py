@@ -18,5 +18,5 @@ while continuer:
             continuer = False
         normal(event, barre_rect_normal)
         mouvement(event, tetramino)
-    clock.tick(60)
+    clock.tick(10)
     Py.display.update()
