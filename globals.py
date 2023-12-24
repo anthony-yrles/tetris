@@ -1,4 +1,5 @@
 import pygame as Py
+import random
 
 screen = Py.display.set_mode((800, 600))
 
@@ -43,6 +44,20 @@ tetramino_6 = [[0, 0],[1, 0],[2, 0],[3, 0],[4, 0],[5, 0],]
 # Création d'une liste contenant les différentes formes
 tetraminos = [tetramino_1, tetramino_2, tetramino_3, tetramino_4, tetramino_5, tetramino_6]
 
+def random_tetramino(tetraminos):
+    tetramino = random.choice(tetraminos)
+    return tetramino
+
+tetramino = random_tetramino(tetraminos)
+
+def set_tetramino(tetraminos):
+    global tetramino
+    tetramino = random_tetramino(tetraminos)
+def get_tetramino():
+    global tetramino
+    return tetramino
+
+# Gestion des coordonées des tetramino et du remplissage de la grille 
 grid = [[0] * 20 for _ in range(30)]
 tetraminos_x = 10
 tetraminos_y = 0

@@ -3,13 +3,13 @@ import states as STATES
 from globals import *
 from tetramino import *
 
-def render(font, tetris_font, tetramino):
+def render(font, tetris_font):
     menu = get_menu()
     match menu:
         case STATES.MENU:
             render_menu(tetris_font, font)
         case STATES.NORMAL:
-            render_normal_mode(tetramino)
+            render_normal_mode()
     Py.display.flip()
 
 def render_menu(tetris_font, font):
@@ -39,13 +39,14 @@ def render_menu(tetris_font, font):
     hall_of_fame_text = text_hall_of_fame.get_rect(center=barre_rect_hall_of_fame.center)
     screen.blit(text_hall_of_fame, hall_of_fame_text)
 
-def render_normal_mode(tetramino):
+def render_normal_mode():
     screen.fill((0,0,0))
     screen.blit(image_bcg_normal, (0,0))
     Py.draw.rect(screen, 'black', rect_display_game)
     for i in range(number_of_tile_y):
         for j in range(number_of_tile_x):
-            rect_interior_game = Py.Rect(grid_start_x + j * tile_size + 1, grid_start_y + i * tile_size + 1, tile_size - 1, tile_size - 1)
-            Py.draw.rect(screen, 'white', rect_interior_game)
-    dessiner_tetramino(tetramino)
+            if get_grid()[i][j] == 0:
+                rect_interior_game = Py.Rect(grid_start_x + j * tile_size + 1, grid_start_y + i * tile_size + 1, tile_size - 1, tile_size - 1)
+                Py.draw.rect(screen, 'white', rect_interior_game)
+    dessiner_tetramino()
 

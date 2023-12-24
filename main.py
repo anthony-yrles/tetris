@@ -9,10 +9,9 @@ clock = Py.time.Clock()
 continuer = True
 tetris_font = Py.font.Font('./assets/font/Tetris.ttf', 60)
 font = Py.font.SysFont(None, 70)
-tetramino = random_tetramino(tetraminos)
 
 while continuer:
-    render(font, tetris_font, tetramino)
+    render(font, tetris_font)
     for event in Py.event.get():
         if event.type == Py.QUIT:
             continuer = False
