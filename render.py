@@ -48,5 +48,9 @@ def render_normal_mode():
             if get_grid()[i][j] == 0:
                 rect_interior_game = Py.Rect(grid_start_x + j * tile_size + 1, grid_start_y + i * tile_size + 1, tile_size - 1, tile_size - 1)
                 Py.draw.rect(screen, 'white', rect_interior_game)
+            else:
+                set_tetraminos_y(get_tetraminos_y())
+                rect_interior_game = Py.Rect(grid_start_x + j * tile_size + 1, grid_start_y + i * tile_size + 1, tile_size - 1, tile_size - 1)
+                Py.draw.rect(screen, (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)), rect_interior_game)
     dessiner_tetramino()
 

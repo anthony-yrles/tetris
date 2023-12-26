@@ -35,11 +35,20 @@ rect_interior_game = Py.Rect(200, 0, 19, 19)
 
 # Globals pour les différents forme de tuiles
 tetramino_1 = [[0, -1], [1, -1],[-1, 0], [0, 0],[-1, 1]]
-tetramino_2 = [[-1, 0],[0, -2], [0, -1], [0, 0], [0, 1], [0, 2],[1, 0],]
-tetramino_3 = [[-1, -1], [-1, 1],[0, -2], [0, -1], [0, 0], [0, 1], [0, 2],[1, -1], [1, 1],]
+tetramino_1_bis = [[-1, 0],[0, 0],[0, 1], [-1, -1],[1, 1]]
+tetramino_1_ter = [[-1, 1],[0, 1], [0, 0], [1, 0], [1, -1]]
+tetramino_1_quatro = [[-1, -1], [-1, 0], [0, 0], [0, 1], [1, 1]]
+tetramino_2 = [[-1, 0],[0, -2], [0, -1], [0, 0], [0, 1], [0, 2],[1, 0]]
+tetramino_2_bis = [[-2, 0], [-1, 0], [0, 0], [1, 0], [2, 0], [0, -1], [0, 1]]
+tetramino_3 = [[-1, -1], [-1, 1],[0, -2], [0, -1], [0, 0], [0, 1], [0, 2],[1, -1], [1, 1]]
+tetramino_3_bis = [[-2, 0], [-1, 0], [0, 0], [1, 0], [2, 0], [1, -1], [1, 1],[-1, -1], [-1, 1]]
 tetramino_4 = [[0, 0]]
-tetramino_5 = [[-4, -2],[-3, -2],[-2, -2],[-1, -2],[0, -2], [0, -1], [0, 0], [0, 1], [0, 2],]
-tetramino_6 = [[0, 0],[1, 0],[2, 0],[3, 0],[4, 0],[5, 0],]
+tetramino_5 = [[-4, 0],[-3, 0],[-2, 0],[-1, 0],[0, 0], [0, 1], [0, 2],[0, 3], [0, 4]]
+tetramino_5_bis = [[4, 0],[3, 0],[2, 0],[1, 0],[0, 0], [0, 1], [0, 2],[0, 3], [0, 4]]
+tetramino_5_ter = [[4, 0],[3, 0],[2, 0],[1, 0],[0, 0], [0, -1], [0, -2],[0, -3], [0, -4]]
+tetramino_5_quatro = [[-4, 0],[-3, 0],[-2, 0],[-1, 0],[0, 0], [0, -1], [0, -2],[0, -3], [0, -4]]
+tetramino_6 = [[0, 0],[1, 0],[2, 0],[3, 0],[4, 0],[5, 0]]
+tetramino_6_bis = [[0, 0],[0, 1],[0, 2],[0, 3],[0, 4], [0, 5]]
 
 # Création d'une liste contenant les différentes formes
 tetraminos = [tetramino_1, tetramino_2, tetramino_3, tetramino_4, tetramino_5, tetramino_6]
@@ -50,9 +59,41 @@ def random_tetramino(tetraminos):
 
 tetramino = random_tetramino(tetraminos)
 
+def set_rotate_tetramino():
+    global tetramino
+    if tetramino == tetramino_1:
+        tetramino = tetramino_1_bis
+    elif tetramino == tetramino_1_bis:
+        tetramino = tetramino_1_ter
+    elif tetramino == tetramino_1_ter:
+        tetramino = tetramino_1_quatro
+    elif tetramino == tetramino_1_quatro:
+        tetramino = tetramino_1
+    elif tetramino == tetramino_2:
+        tetramino = tetramino_2_bis
+    elif tetramino == tetramino_2_bis:
+        tetramino = tetramino_2
+    elif tetramino == tetramino_3:
+        tetramino = tetramino_3_bis
+    elif tetramino == tetramino_3_bis:
+        tetramino = tetramino_3
+    elif tetramino == tetramino_5:
+        tetramino = tetramino_5_bis
+    elif tetramino == tetramino_5_bis:
+        tetramino = tetramino_5_ter
+    elif tetramino == tetramino_5_ter:
+        tetramino = tetramino_5_quatro
+    elif tetramino == tetramino_5_quatro:
+        tetramino = tetramino_5
+    elif tetramino == tetramino_6:
+        tetramino = tetramino_6_bis
+    elif tetramino == tetramino_6_bis:
+        tetramino = tetramino_6
+
 def set_tetramino(tetraminos):
     global tetramino
     tetramino = random_tetramino(tetraminos)
+
 def get_tetramino():
     global tetramino
     return tetramino
