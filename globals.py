@@ -51,7 +51,8 @@ tetramino_6 = [[0, 0],[1, 0],[2, 0],[3, 0],[4, 0],[5, 0]]
 tetramino_6_bis = [[0, 0],[0, 1],[0, 2],[0, 3],[0, 4], [0, 5]]
 
 # Création d'une liste contenant les différentes formes
-tetraminos = [tetramino_1, tetramino_2, tetramino_3, tetramino_4, tetramino_5, tetramino_6]
+# tetraminos = [tetramino_1, tetramino_2, tetramino_3, tetramino_4, tetramino_5, tetramino_6]
+tetraminos = [tetramino_3, tetramino_6]
 
 def random_tetramino(tetraminos):
     tetramino = random.choice(tetraminos)
