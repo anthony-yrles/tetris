@@ -10,7 +10,7 @@ FPS = 60
 
 pygame.init()
 sc = pygame.display.set_mode(RES)
-    game_sc = pygame.Surface(GAME_RES)
+game_sc = pygame.Surface(GAME_RES)
 clock = pygame.time.Clock()
 
 grid = [pygame.Rect(x * TILE, y * TILE, TILE, TILE) for x in range(W) for y in range(H)]

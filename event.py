@@ -22,5 +22,7 @@ def mouvement(event, tetramino):
             if test_collision(direction, tetramino):
                 set_tetraminos_x(value)
         elif event.key == Py.K_UP:
-            set_rotate_tetramino()
+            rotate_tetramino = set_rotate_tetramino()
+            if test_collision((0, 0), rotate_tetramino):
+                set_tetramino(rotate_tetramino)
 

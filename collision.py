@@ -7,7 +7,7 @@ def test_collision(direction, tetramino):
     for coords in tetramino:
         new_x = x + coords[1] + direction[0]
         new_y = y + coords[0] + direction[1]
-        if new_x < 0 or new_x > 19 or new_y > 29 or grid[new_y][new_x] != 0:
+        if new_x < 0 or new_x > 19 or new_y > 29 or (new_y >= 0 and grid[new_y][new_x] != 0):
             return False
     return True
 

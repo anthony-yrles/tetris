@@ -52,7 +52,7 @@ tetramino_6_bis = [[0, 0],[0, 1],[0, 2],[0, 3],[0, 4], [0, 5]]
 
 # Création d'une liste contenant les différentes formes
 # tetraminos = [tetramino_1, tetramino_2, tetramino_3, tetramino_4, tetramino_5, tetramino_6]
-tetraminos = [tetramino_3, tetramino_6]
+tetraminos = [tetramino_6]
 
 def random_tetramino(tetraminos):
     tetramino = random.choice(tetraminos)
@@ -63,37 +63,39 @@ tetramino = random_tetramino(tetraminos)
 def set_rotate_tetramino():
     global tetramino
     if tetramino == tetramino_1:
-        tetramino = tetramino_1_bis
+        return tetramino_1_bis
     elif tetramino == tetramino_1_bis:
-        tetramino = tetramino_1_ter
+        return tetramino_1_ter
     elif tetramino == tetramino_1_ter:
-        tetramino = tetramino_1_quatro
+        return tetramino_1_quatro
     elif tetramino == tetramino_1_quatro:
-        tetramino = tetramino_1
+        return tetramino_1
     elif tetramino == tetramino_2:
-        tetramino = tetramino_2_bis
+        return tetramino_2_bis
     elif tetramino == tetramino_2_bis:
-        tetramino = tetramino_2
+        return tetramino_2
     elif tetramino == tetramino_3:
-        tetramino = tetramino_3_bis
+        return tetramino_3_bis
     elif tetramino == tetramino_3_bis:
-        tetramino = tetramino_3
+        return tetramino_3
+    elif tetramino == tetramino_4:
+        return tetramino_4
     elif tetramino == tetramino_5:
-        tetramino = tetramino_5_bis
+        return tetramino_5_bis
     elif tetramino == tetramino_5_bis:
-        tetramino = tetramino_5_ter
+        return tetramino_5_ter
     elif tetramino == tetramino_5_ter:
-        tetramino = tetramino_5_quatro
+        return tetramino_5_quatro
     elif tetramino == tetramino_5_quatro:
-        tetramino = tetramino_5
+        return tetramino_5
     elif tetramino == tetramino_6:
-        tetramino = tetramino_6_bis
+        return tetramino_6_bis
     elif tetramino == tetramino_6_bis:
-        tetramino = tetramino_6
+        return tetramino_6
 
 def set_tetramino(tetraminos):
     global tetramino
-    tetramino = random_tetramino(tetraminos)
+    tetramino = tetraminos
 
 def get_tetramino():
     global tetramino
@@ -104,12 +106,24 @@ grid = [[0] * 20 for _ in range(30)]
 tetraminos_x = 10
 tetraminos_y = 0
 
+# def set_grid(tetramino, draw_x, draw_y, taille_cote):
+#     global grid
+#     for coord in tetramino:
+#         x = (draw_x + coord[1] * taille_cote - grid_start_x) // tile_size
+#         y = (draw_y + coord[0] * taille_cote) // tile_size
+#         grid[y][x] = 1
+
 def set_grid(tetramino, draw_x, draw_y, taille_cote):
     global grid
     for coord in tetramino:
         x = (draw_x + coord[1] * taille_cote - grid_start_x) // tile_size
         y = (draw_y + coord[0] * taille_cote) // tile_size
-        grid[y][x] = 1
+        set_grid_value(y, x, 1)
+
+def set_grid_value(y, x, value):
+    global grid
+    if 0 <= y < len(grid) and 0 <= x < len(grid[0]):
+        grid[y][x] = value
 
 def set_tetraminos_x(value):
     global tetraminos_x
@@ -136,4 +150,18 @@ def get_tetraminos_y():
 def get_grid():
     global grid
     return grid
+
+# Définir une variable globale pour stocker les lignes à supprimer
+lines_to_remove = []
+
+# Getter pour obtenir la liste des lignes à supprimer
+def get_lines_to_remove():
+    global lines_to_remove
+    return lines_to_remove
+
+# Setter pour mettre à jour la liste des lignes à supprimer
+def set_lines_to_remove(lines):
+    global lines_to_remove
+    lines_to_remove = lines
+
 

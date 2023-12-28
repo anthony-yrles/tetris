@@ -1,5 +1,6 @@
 from globals import *
 from collision import *
+from remplissage import *
 
 def dessiner_tetramino():
     draw_x = grid_start_x + get_tetraminos_x() * tile_size
@@ -11,9 +12,10 @@ def dessiner_tetramino():
         set_tetraminos_y(1)
     else:
         set_grid(tetramino, draw_x, draw_y, taille_cote)
-        set_tetramino(tetraminos)
+        set_tetramino(random_tetramino(tetraminos))
         set_tetraminos_y(0)
         set_tetraminos_x(10)
+        # test_ligne()
         dessiner_tetramino_aux(tetramino, draw_x, draw_y, taille_cote)
 
 def dessiner_tetramino_aux(tetramino, draw_x, draw_y, taille_cote):
