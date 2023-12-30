@@ -9,7 +9,6 @@ clock = Py.time.Clock()
 continuer = True
 tetris_font = Py.font.Font('./assets/font/Tetris.ttf', 60)
 font = Py.font.Font('./assets/font/Tetris.ttf', 40)
-font_mini = Py.font.Font('./assets/font/Tetris.ttf', 25)
 
 while continuer:
     render(font, tetris_font)
@@ -19,5 +18,5 @@ while continuer:
         normal(event, barre_rect_normal)
         tetramino = get_tetramino()
         mouvement(event, tetramino)
-    clock.tick(1)
+    clock.tick(get_FPS())
     Py.display.update()

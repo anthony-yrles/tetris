@@ -25,4 +25,8 @@ def mouvement(event, tetramino):
             rotate_tetramino = set_rotate_tetramino()
             if test_collision((0, 0), rotate_tetramino):
                 set_tetramino(rotate_tetramino)
-
+        elif event.key == Py.K_DOWN:
+            y_shift = 1
+            while test_collision((0, y_shift), tetramino):
+                y_shift += 1
+            set_tetraminos_y(get_tetraminos_y() + y_shift - 1)

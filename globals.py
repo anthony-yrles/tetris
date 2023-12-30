@@ -48,7 +48,7 @@ tetramino_2 = [[-1, 0],[0, -2], [0, -1], [0, 0], [0, 1], [0, 2],[1, 0]]
 tetramino_2_bis = [[-2, 0], [-1, 0], [0, 0], [1, 0], [2, 0], [0, -1], [0, 1]]
 tetramino_3 = [[-1, -1], [-1, 1],[0, -2], [0, -1], [0, 0], [0, 1], [0, 2],[1, -1], [1, 1]]
 tetramino_3_bis = [[-2, 0], [-1, 0], [0, 0], [1, 0], [2, 0], [1, -1], [1, 1],[-1, -1], [-1, 1]]
-tetramino_4 = [[0, 0]]
+tetramino_4 = [[0,0], [0,1], [1,1], [1,0],[-1,0],[-1,-1],[0,-1],[-1,1],[1,-1],[-2,-2],[-2,-1],[-2,0],[-2,1],[-2,2],[-1,2],[0,2],[1,2],[-1,-2],[0,-2],[1,-2]]
 tetramino_5 = [[-4, 0],[-3, 0],[-2, 0],[-1, 0],[0, 0], [0, 1], [0, 2],[0, 3], [0, 4]]
 tetramino_5_bis = [[4, 0],[3, 0],[2, 0],[1, 0],[0, 0], [0, 1], [0, 2],[0, 3], [0, 4]]
 tetramino_5_ter = [[4, 0],[3, 0],[2, 0],[1, 0],[0, 0], [0, -1], [0, -2],[0, -3], [0, -4]]
@@ -58,7 +58,7 @@ tetramino_6_bis = [[0, 0],[0, 1],[0, 2],[0, 3],[0, 4], [0, 5]]
 
 # Création d'une liste contenant les différentes formes
 # tetraminos = [tetramino_1, tetramino_2, tetramino_3, tetramino_4, tetramino_5, tetramino_6]
-tetraminos = [tetramino_6]
+tetraminos = [tetramino_4]
 
 def random_tetramino(tetraminos):
     tetramino = random.choice(tetraminos)
@@ -153,10 +153,12 @@ def get_grid():
 completed_lignes = 0
 total_score = 0
 level = 1
+FPS = 1
 
 def set_completed_lignes(lignes_finished):
     global completed_lignes
     completed_lignes += lignes_finished
+    set_level(completed_lignes)
 
 def get_completed_lignes():
     global completed_lignes
@@ -181,15 +183,19 @@ def get_total_score():
     global total_score
     return total_score
 
+def set_level(completed_lignes):
+    global level
+    level = completed_lignes // 10 +1
+    set_FPS(level)
+
 def get_level():
     global level
     return level
 
-# def set_level(completed_lignes):
-#     global level
-#     completed_lignes = get_completed_lignes()
-#     if completed_lignes == 10:
-#         level += 1
+def set_FPS(level):
+    global FPS
+    FPS = FPS + level / 10
 
-
-
+def get_FPS():
+    global FPS
+    return FPS
