@@ -3,13 +3,13 @@ import states as STATES
 from globals import *
 from tetramino import *
 
-def render(font, tetris_font):
+def render(font, tetris_font, tile_size):
     menu = get_menu()
     match menu:
         case STATES.MENU:
             render_menu(font, tetris_font)
         case STATES.NORMAL:
-            render_normal_mode(font,tetris_font)
+            render_normal_mode(font,tetris_font, tile_size)
     Py.display.flip()
 
 def render_menu(font, tetris_font):
@@ -35,7 +35,7 @@ def render_menu(font, tetris_font):
     hall_of_fame_text = text_hall_of_fame.get_rect(center=barre_rect_hall_of_fame.center)
     screen.blit(text_hall_of_fame, hall_of_fame_text)
 
-def render_normal_mode(font, tetris_font):
+def render_normal_mode(font, tetris_font, tile_size):
     screen.fill((0,0,0))
     Py.draw.rect(screen, Py.Color(255, 255, 255), rect_tetriste_normal)
     Py.draw.rect(screen, Py.Color(255, 255, 255), rect_level)
@@ -67,14 +67,46 @@ def render_normal_mode(font, tetris_font):
     screen.blit(text_ligne_count, ligne_count_text)
     screen.blit(text_score, score_text)
     screen.blit(text_score_count, score_count_text)
-    for i in range(number_of_tile_y):
-        for j in range(number_of_tile_x):
-            if get_grid()[i][j] == 0:
-                rect_interior_game = Py.Rect(grid_start_x + j * tile_size + 1, grid_start_y + i * tile_size + 1, tile_size - 1, tile_size - 1)
-                Py.draw.rect(screen, 'white', rect_interior_game)
-            else:
-                set_tetraminos_y(get_tetraminos_y())
-                rect_interior_game = Py.Rect(grid_start_x + j * tile_size + 1, grid_start_y + i * tile_size + 1, tile_size - 1, tile_size - 1)
-                Py.draw.rect(screen, (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)), rect_interior_game)
-    dessiner_tetramino()
+    game_end = get_game_end()
+    if not game_end:
+        for i in range(number_of_tile_y):
+            for j in range(number_of_tile_x):
+                if get_grid()[i][j] == 0:
+                    rect_interior_game = Py.Rect(grid_start_x + j * tile_size + 1, grid_start_y + i * tile_size + 1, tile_size - 1, tile_size - 1)
+                    Py.draw.rect(screen, 'white', rect_interior_game)
+                else:
+                    set_tetraminos_y(get_tetraminos_y())
+                    rect_interior_game = Py.Rect(grid_start_x + j * tile_size + 1, grid_start_y + i * tile_size + 1, tile_size - 1, tile_size - 1)
+                    Py.draw.rect(screen, (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)), rect_interior_game)
+        dessiner_tetramino(tile_size)
+    if game_end:
+        screen.fill((0,0,0))
+        Py.draw.rect(screen, Py.Color(255, 255, 255), rect_tetriste)
+        Py.draw.rect(screen, Py.Color(255, 255, 255), rect_game_end)
+        Py.draw.rect(screen, Py.Color(255, 255, 255), rect_register)
+        Py.draw.rect(screen, Py.Color(255, 255, 255), rect_play_again)
+        screen.blit(image_bcg_normal, (0,0))
+        Py.draw.rect(screen, Py.Color(255, 255, 255), rect_register_name)
+        Py.draw.rect(screen, Py.Color(255, 255, 255), rect_play_again_click)
+        text_titre = tetris_font.render('Tetriste', True, ('black'))
+        titre_text = text_titre.get_rect(center=rect_tetriste.center)
+        screen.blit(text_titre, titre_text)
+        partie_terminé = 'Perdu, score total: ' + str(get_total_score())
+        text_game_end = font.render(partie_terminé, True, ('black'))
+        game_end_text = text_game_end.get_rect(center=rect_game_end.center)
+        screen.blit(text_game_end, game_end_text)
+        text_register = font.render('Enregistrer votre score?',True, ('black'))
+        register_text = text_register.get_rect(center=rect_register.center)
+        screen.blit(text_register, register_text)
+        text_register_name = font.render('cliquez içi', True, ('black'))
+        register_name_text = text_register_name.get_rect(center=rect_register_name.center)
+        screen.blit(text_register_name, register_name_text)
+        text_play_again = font.render('Une nouvelle partie',True, ('black'))
+        play_again_text = text_play_again.get_rect(center=rect_play_again.center)
+        screen.blit(text_play_again, play_again_text)
+        text_play_again_click = font.render('cliquez içi', True, ('black'))
+        play_again_click_text = text_play_again_click.get_rect(center=rect_play_again_click.center)
+        screen.blit(text_play_again_click, play_again_click_text)
+
+
 

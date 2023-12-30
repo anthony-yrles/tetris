@@ -39,6 +39,13 @@ tile_size = 20
 grid_start_x = 50
 grid_start_y = 0
 
+# Globals pour le render du end_game
+rect_game_end = Py.Rect(0, 100, 800, 80)
+rect_register = Py.Rect(0, 200, 800, 80)
+rect_register_name = Py.Rect(270, 300, 300, 80)
+rect_play_again = Py.Rect(0, 400, 800, 80)
+rect_play_again_click = Py.Rect(270, 500, 300, 80)
+
 # Globals pour les différents forme de tuiles
 tetramino_1 = [[0, -1], [1, -1],[-1, 0], [0, 0],[-1, 1]]
 tetramino_1_bis = [[-1, 0],[0, 0],[0, 1], [-1, -1],[1, 1]]
@@ -48,7 +55,7 @@ tetramino_2 = [[-1, 0],[0, -2], [0, -1], [0, 0], [0, 1], [0, 2],[1, 0]]
 tetramino_2_bis = [[-2, 0], [-1, 0], [0, 0], [1, 0], [2, 0], [0, -1], [0, 1]]
 tetramino_3 = [[-1, -1], [-1, 1],[0, -2], [0, -1], [0, 0], [0, 1], [0, 2],[1, -1], [1, 1]]
 tetramino_3_bis = [[-2, 0], [-1, 0], [0, 0], [1, 0], [2, 0], [1, -1], [1, 1],[-1, -1], [-1, 1]]
-tetramino_4 = [[0,0], [0,1], [1,1], [1,0],[-1,0],[-1,-1],[0,-1],[-1,1],[1,-1],[-2,-2],[-2,-1],[-2,0],[-2,1],[-2,2],[-1,2],[0,2],[1,2],[-1,-2],[0,-2],[1,-2]]
+tetramino_4 = [[0,0], [0,1], [1,1], [1,0],[-1,0],[-1,-1],[0,-1],[-1,1],[1,-1]]
 tetramino_5 = [[-4, 0],[-3, 0],[-2, 0],[-1, 0],[0, 0], [0, 1], [0, 2],[0, 3], [0, 4]]
 tetramino_5_bis = [[4, 0],[3, 0],[2, 0],[1, 0],[0, 0], [0, 1], [0, 2],[0, 3], [0, 4]]
 tetramino_5_ter = [[4, 0],[3, 0],[2, 0],[1, 0],[0, 0], [0, -1], [0, -2],[0, -3], [0, -4]]
@@ -57,14 +64,24 @@ tetramino_6 = [[0, 0],[1, 0],[2, 0],[3, 0],[4, 0],[5, 0]]
 tetramino_6_bis = [[0, 0],[0, 1],[0, 2],[0, 3],[0, 4], [0, 5]]
 
 # Création d'une liste contenant les différentes formes
-# tetraminos = [tetramino_1, tetramino_2, tetramino_3, tetramino_4, tetramino_5, tetramino_6]
-tetraminos = [tetramino_4]
+tetraminos = [tetramino_1, tetramino_2, tetramino_3, tetramino_4, tetramino_5, tetramino_6]
+# tetraminos = [tetramino_6]
 
 def random_tetramino(tetraminos):
     tetramino = random.choice(tetraminos)
     return tetramino
 
 tetramino = random_tetramino(tetraminos)
+# next_tetramino = None
+
+# def set_next_tetramino(tetraminos):
+#     global next_tetramino
+#     tetramino = random.choice(tetraminos)
+#     next_tetramino = tetramino
+
+# def get_next_tetramino():
+#     global next_tetramino
+#     return next_tetramino
 
 def set_rotate_tetramino():
     global tetramino
@@ -154,6 +171,7 @@ completed_lignes = 0
 total_score = 0
 level = 1
 FPS = 1
+game_end = 0
 
 def set_completed_lignes(lignes_finished):
     global completed_lignes
@@ -199,3 +217,24 @@ def set_FPS(level):
 def get_FPS():
     global FPS
     return FPS
+
+def set_game_end():
+    global game_end
+    if game_end == 0:
+        game_end = 1
+    else:
+        game_end = 0
+
+def get_game_end():
+    global game_end
+    return game_end
+
+def set_initial_value():
+    global grid, tetraminos_x, tetraminos_y, completed_lignes, total_score, level, FPS
+    grid = [[0] * 20 for _ in range(31)]
+    tetraminos_x = 10
+    tetraminos_y = 1
+    completed_lignes = 0
+    total_score = 0
+    level = 1
+    FPS = 1
