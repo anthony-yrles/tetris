@@ -15,3 +15,9 @@ def test_rotation():
     if get_tetraminos_x() < 0 or get_tetraminos_x() > 19 or get_tetraminos_y() > 29 or grid[get_tetraminos_y()][get_tetraminos_x()] != 0:
         return False
     return True
+
+def test_loose():
+    y = get_tetraminos_y()
+    if y == 0:
+        return True
+    return False

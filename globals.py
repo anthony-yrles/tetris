@@ -102,16 +102,9 @@ def get_tetramino():
     return tetramino
 
 # Gestion des coordonées des tetramino et du remplissage de la grille 
-grid = [[0] * 20 for _ in range(30)]
+grid = [[0] * 20 for _ in range(31)]
 tetraminos_x = 10
-tetraminos_y = 0
-
-# def set_grid(tetramino, draw_x, draw_y, taille_cote):
-#     global grid
-#     for coord in tetramino:
-#         x = (draw_x + coord[1] * taille_cote - grid_start_x) // tile_size
-#         y = (draw_y + coord[0] * taille_cote) // tile_size
-#         grid[y][x] = 1
+tetraminos_y = 1
 
 def set_grid(tetramino, draw_x, draw_y, taille_cote):
     global grid

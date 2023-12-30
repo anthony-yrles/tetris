@@ -11,12 +11,15 @@ def dessiner_tetramino():
     if test_collision((0, 1), tetramino):
         set_tetraminos_y(1)
     else:
-        set_grid(tetramino, draw_x, draw_y, taille_cote)
-        set_tetramino(random_tetramino(tetraminos))
-        set_tetraminos_y(0)
-        set_tetraminos_x(10)
-        # test_ligne()
-        dessiner_tetramino_aux(tetramino, draw_x, draw_y, taille_cote)
+        if not test_loose():
+            set_grid(tetramino, draw_x, draw_y, taille_cote)
+            set_tetramino(random_tetramino(tetraminos))
+            set_tetraminos_y(0)
+            set_tetraminos_x(10)
+            test_ligne()
+            dessiner_tetramino_aux(tetramino, draw_x, draw_y, taille_cote)
+        else:
+            print("t'as perdu!")
 
 def dessiner_tetramino_aux(tetramino, draw_x, draw_y, taille_cote):
     for coord in tetramino:
