@@ -24,14 +24,20 @@ barre_rect_hall_of_fame = Py.Rect(450, 450, 300, 77)
 
 # Globals pour le render du normal
 
+rect_tetriste_normal = Py.Rect(500, 20, 250, 60)
 image_bcg_normal = Py.image.load('./assets/images/bcg_normal.jpg')
-rect_display_game = Py.Rect(200, 0, 400, 600)
+rect_level = Py.Rect(500, 330, 100, 50)
+rect_level_count = Py.Rect(700, 330, 100, 50)
+rect_ligne = Py.Rect(500, 430, 100, 50)
+rect_ligne_count = Py.Rect(700, 430, 100, 50)
+rect_score = Py.Rect(500, 530, 100, 50)
+rect_score_count = Py.Rect(700, 530, 100, 50)
+rect_display_game = Py.Rect(50, 0, 400, 600)
 number_of_tile_x = 400 // 20
 number_of_tile_y = 600 // 20
 tile_size = 20
-grid_start_x = 200
+grid_start_x = 50
 grid_start_y = 0
-rect_interior_game = Py.Rect(200, 0, 19, 19)
 
 # Globals pour les différents forme de tuiles
 tetramino_1 = [[0, -1], [1, -1],[-1, 0], [0, 0],[-1, 1]]
@@ -144,17 +150,46 @@ def get_grid():
     global grid
     return grid
 
-# Définir une variable globale pour stocker les lignes à supprimer
-lines_to_remove = []
+completed_lignes = 0
+total_score = 0
+level = 1
 
-# Getter pour obtenir la liste des lignes à supprimer
-def get_lines_to_remove():
-    global lines_to_remove
-    return lines_to_remove
+def set_completed_lignes(lignes_finished):
+    global completed_lignes
+    completed_lignes += lignes_finished
 
-# Setter pour mettre à jour la liste des lignes à supprimer
-def set_lines_to_remove(lines):
-    global lines_to_remove
-    lines_to_remove = lines
+def get_completed_lignes():
+    global completed_lignes
+    return completed_lignes
+
+def set_total_score(lignes_finished):
+    global total_score
+    if lignes_finished == 1:
+        total_score += 10
+    elif lignes_finished == 2:
+        total_score += 30
+    elif lignes_finished == 3:
+        total_score += 90
+    elif lignes_finished == 4:
+        total_score += 270
+    elif lignes_finished == 5:
+        total_score += 810
+    elif lignes_finished == 6:
+        total_score += 2500
+
+def get_total_score():
+    global total_score
+    return total_score
+
+def get_level():
+    global level
+    return level
+
+# def set_level(completed_lignes):
+#     global level
+#     completed_lignes = get_completed_lignes()
+#     if completed_lignes == 10:
+#         level += 1
+
 
 
