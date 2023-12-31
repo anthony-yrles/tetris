@@ -41,7 +41,7 @@ tile_size = 20
 grid_start_x = 50
 grid_start_y = 0
 
-# Globals pour le render du end_game
+# Globals pour le render du end_game normal
 rect_game_end = Py.Rect(0, 100, 800, 80)
 rect_register = Py.Rect(0, 200, 800, 80)
 rect_register_name = Py.Rect(270, 300, 300, 80)
@@ -51,6 +51,8 @@ rect_play_again_click = Py.Rect(270, 500, 300, 80)
 # Globals pour le render du survival_mode
 image_bcg_survival = Py.image.load('./assets/images/bcg_survival.jpg')
 rect_tetriste_survival = Py.Rect(50, 20, 250, 60)
+rect_temps_ecoule = Py.Rect(50, 250, 250, 60)
+rect_running_time = Py.Rect(50, 350, 250, 60)
 survival_tile_size = 30
 number_of_survival_tile_x = 420 // survival_tile_size
 number_of_survival_tile_y = 600 // survival_tile_size

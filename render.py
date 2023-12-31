@@ -11,7 +11,7 @@ def render(font, tetris_font, tile_size):
         case STATES.NORMAL:
             render_normal_mode(font,tetris_font, tile_size)
         case STATES.SURVIVAL:
-            render_survival_mode(tetris_font)
+            render_survival_mode(tetris_font, font)
     Py.display.flip()
 
 def render_menu(font, tetris_font):
@@ -110,13 +110,21 @@ def render_normal_mode(font, tetris_font, tile_size):
         play_again_click_text = text_play_again_click.get_rect(center=rect_play_again_click.center)
         screen.blit(text_play_again_click, play_again_click_text)
 
-def render_survival_mode(tetris_font):
+def render_survival_mode(tetris_font, font):
     screen.fill((0,0,0))
     Py.draw.rect(screen, Py.Color(255, 255, 255), rect_tetriste_survival)
+    Py.draw.rect(screen, Py.Color(255, 255, 255), rect_temps_ecoule)
+    Py.draw.rect(screen, Py.Color(255, 255, 255), rect_running_time)
     screen.blit(image_bcg_survival, (0,0))
-    text_survival = tetris_font.render('Survival', True, ('black'))
+    text_survival = tetris_font.render('Survival', True, ('red'))
     survival_text = text_survival.get_rect(center=rect_tetriste_survival.center)
+    text_temps_ecoule = font.render('Temps écoulé', True, ('red'))
+    temps_ecoule_text = text_temps_ecoule.get_rect(center=rect_temps_ecoule.center)
+    text_running_time = font.render('x secondes', True, ('red'))
+    running_time_text = text_running_time.get_rect(center=rect_running_time.center)
     screen.blit(text_survival, survival_text)
+    screen.blit(text_temps_ecoule, temps_ecoule_text)
+    screen.blit(text_running_time, running_time_text)
     game_end = get_game_end()
     if not game_end:
         for i in range(number_of_survival_tile_y):
