@@ -8,6 +8,13 @@ def normal(event, barre_rect_normal):
         if barre_rect_normal.collidepoint(pos):
             menu_on_clic = 1
             set_menu(menu_on_clic)
+            
+def survival(event, barre_rect_survival):
+    if event.type == Py.MOUSEBUTTONDOWN:
+        pos = Py.mouse.get_pos()
+        if barre_rect_survival.collidepoint(pos):
+            menu_on_clic = 2
+            set_menu(menu_on_clic)
 
 def play_again(event, rect_play_again_click):
     if event.type == Py.MOUSEBUTTONDOWN:
@@ -22,15 +29,23 @@ def mouvement(event, tetramino):
             value = -1
             if test_collision(direction, tetramino):
                 set_tetraminos_x(value)
+                set_survival_tetraminos_x(value)
         elif event.key == Py.K_RIGHT:
             direction = (1, 0)
             value = 1
             if test_collision(direction, tetramino):
                 set_tetraminos_x(value)
+                set_survival_tetraminos_x(value)
         elif event.key == Py.K_UP:
-            rotate_tetramino = set_rotate_tetramino()
-            if test_collision((0, 0), rotate_tetramino):
-                set_tetramino(rotate_tetramino)
+            menu = get_menu()
+            if menu == 1:
+                rotate_tetramino = set_rotate_tetramino_normal()
+                if test_collision((0, 0), rotate_tetramino):
+                    set_tetramino_normal(rotate_tetramino)
+            elif menu == 2:
+                rotate_tetramino = set_rotate_termino_survival()
+                if test_collision((0, 0), rotate_tetramino):
+                    set_tetramino_survival(rotate_tetramino)
         elif event.key == Py.K_DOWN:
             y_shift = 1
             while test_collision((0, y_shift), tetramino):

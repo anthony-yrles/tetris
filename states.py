@@ -1,2 +1,3 @@
 MENU = 0
 NORMAL = 1
+SURVIVAL = 2

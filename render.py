@@ -10,6 +10,8 @@ def render(font, tetris_font, tile_size):
             render_menu(font, tetris_font)
         case STATES.NORMAL:
             render_normal_mode(font,tetris_font, tile_size)
+        case STATES.SURVIVAL:
+            render_survival_mode(tetris_font)
     Py.display.flip()
 
 def render_menu(font, tetris_font):
@@ -107,6 +109,26 @@ def render_normal_mode(font, tetris_font, tile_size):
         text_play_again_click = font.render('cliquez içi', True, ('black'))
         play_again_click_text = text_play_again_click.get_rect(center=rect_play_again_click.center)
         screen.blit(text_play_again_click, play_again_click_text)
+
+def render_survival_mode(tetris_font):
+    screen.fill((0,0,0))
+    Py.draw.rect(screen, Py.Color(255, 255, 255), rect_tetriste_survival)
+    screen.blit(image_bcg_survival, (0,0))
+    text_survival = tetris_font.render('Survival', True, ('black'))
+    survival_text = text_survival.get_rect(center=rect_tetriste_survival.center)
+    screen.blit(text_survival, survival_text)
+    game_end = get_game_end()
+    if not game_end:
+        for i in range(number_of_survival_tile_y):
+            for j in range(number_of_survival_tile_x):
+                if get_survival_grid()[i][j] == 0:
+                    rect_interior_game = Py.Rect(survival_grid_start_x + j * survival_tile_size + 1, survival_grid_start_y + i * survival_tile_size + 1, survival_tile_size - 1, survival_tile_size - 1)
+                    Py.draw.rect(screen, 'white', rect_interior_game)
+                else:
+                    set_tetraminos_y(get_tetraminos_y())
+                    rect_interior_game = Py.Rect(survival_grid_start_x + j * survival_tile_size + 1, survival_grid_start_y + i * survival_tile_size + 1, survival_tile_size - 1, survival_tile_size - 1)
+                    Py.draw.rect(screen, get_color(), rect_interior_game)
+        dessiner_tetramino(survival_tile_size)
 
 
 

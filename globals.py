@@ -1,7 +1,9 @@
 import pygame as Py
 import random
+from random import choice, randrange
 
 screen = Py.display.set_mode((800, 600))
+get_color = lambda : (randrange(30, 256), randrange(30, 256), randrange(30, 256))
 
 # Création d'un setteur et d'un getteur de menu
 menu = 0
@@ -46,7 +48,16 @@ rect_register_name = Py.Rect(270, 300, 300, 80)
 rect_play_again = Py.Rect(0, 400, 800, 80)
 rect_play_again_click = Py.Rect(270, 500, 300, 80)
 
-# Globals pour les différents forme de tuiles
+# Globals pour le render du survival_mode
+image_bcg_survival = Py.image.load('./assets/images/bcg_survival.jpg')
+rect_tetriste_survival = Py.Rect(50, 20, 250, 60)
+survival_tile_size = 30
+number_of_survival_tile_x = 420 // survival_tile_size
+number_of_survival_tile_y = 600 // survival_tile_size
+survival_grid_start_x = 350
+survival_grid_start_y = 0
+
+# Globals pour les différents forme de tuiles en mode normal
 tetramino_1 = [[0, -1], [1, -1],[-1, 0], [0, 0],[-1, 1]]
 tetramino_1_bis = [[-1, 0],[0, 0],[0, 1], [-1, -1],[1, 1]]
 tetramino_1_ter = [[-1, 1],[0, 1], [0, 0], [1, 0], [1, -1]]
@@ -60,18 +71,26 @@ tetramino_5 = [[-4, 0],[-3, 0],[-2, 0],[-1, 0],[0, 0], [0, 1], [0, 2],[0, 3], [0
 tetramino_5_bis = [[4, 0],[3, 0],[2, 0],[1, 0],[0, 0], [0, 1], [0, 2],[0, 3], [0, 4]]
 tetramino_5_ter = [[4, 0],[3, 0],[2, 0],[1, 0],[0, 0], [0, -1], [0, -2],[0, -3], [0, -4]]
 tetramino_5_quatro = [[-4, 0],[-3, 0],[-2, 0],[-1, 0],[0, 0], [0, -1], [0, -2],[0, -3], [0, -4]]
-tetramino_6 = [[0, 0],[1, 0],[2, 0],[3, 0],[4, 0],[5, 0]]
-tetramino_6_bis = [[0, 0],[0, 1],[0, 2],[0, 3],[0, 4], [0, 5]]
+tetramino_6 = [[-3, 0],[-2, 0],[-1, 0],[0, 0],[1, 0],[2, 0], [3, 0]]
+tetramino_6_bis = [[0, -3], [0, -2],[0, -1],[0, 0],[0, 1],[0, 2], [0, 3]]
+
+# Globals pour les différents forme de tuiles en mode survival
+survival_tetra_5 = [[-3, 0], [-2, 0], [-1, 0], [0, 0], [0, 1], [0, 2]]
+survival_tetra_5_bis = [[2, 0], [1, 0], [0, 0], [0, 1], [0, 2], [0, 3]]
+survival_tetra_5_ter = [[3, 0], [2, 0], [1, 0], [0, 0], [0, -1], [0, -2]]
+survival_tetra_5_quatro = [[-2, 0], [-1, 0], [0, 0], [0, -1], [0, -2], [0, -3]]
+survival_tetra_6 = [[-2, 0],[-1, 0],[0, 0],[1, 0],[2, 0]]
+survival_tetra_6_bis = [[0, -2],[0, -1],[0, 0],[0, 1],[0, 2]]
 
 # Création d'une liste contenant les différentes formes
-tetraminos = [tetramino_1, tetramino_2, tetramino_3, tetramino_4, tetramino_5, tetramino_6]
-# tetraminos = [tetramino_6]
+tetraminos_normal = [tetramino_1, tetramino_2, tetramino_3, tetramino_4, tetramino_5, tetramino_6]
+tetraminos_survival = [tetramino_1, tetramino_2, tetramino_3, tetramino_4, survival_tetra_5, survival_tetra_6]
+# tetraminos_survival = [survival_tetra_6]
 
 def random_tetramino(tetraminos):
     tetramino = random.choice(tetraminos)
     return tetramino
 
-tetramino = random_tetramino(tetraminos)
 # next_tetramino = None
 
 # def set_next_tetramino(tetraminos):
@@ -83,51 +102,93 @@ tetramino = random_tetramino(tetraminos)
 #     global next_tetramino
 #     return next_tetramino
 
-def set_rotate_tetramino():
-    global tetramino
-    if tetramino == tetramino_1:
+tetramino_normal = random_tetramino(tetraminos_normal)
+tetramino_survival = random_tetramino(tetraminos_survival)
+
+def set_rotate_tetramino_normal():
+    global tetramino_normal
+    if tetramino_normal == tetramino_1:
         return tetramino_1_bis
-    elif tetramino == tetramino_1_bis:
+    elif tetramino_normal == tetramino_1_bis:
         return tetramino_1_ter
-    elif tetramino == tetramino_1_ter:
+    elif tetramino_normal == tetramino_1_ter:
         return tetramino_1_quatro
-    elif tetramino == tetramino_1_quatro:
+    elif tetramino_normal == tetramino_1_quatro:
         return tetramino_1
-    elif tetramino == tetramino_2:
+    elif tetramino_normal == tetramino_2:
         return tetramino_2_bis
-    elif tetramino == tetramino_2_bis:
+    elif tetramino_normal == tetramino_2_bis:
         return tetramino_2
-    elif tetramino == tetramino_3:
+    elif tetramino_normal == tetramino_3:
         return tetramino_3_bis
-    elif tetramino == tetramino_3_bis:
+    elif tetramino_normal == tetramino_3_bis:
         return tetramino_3
-    elif tetramino == tetramino_4:
+    elif tetramino_normal == tetramino_4:
         return tetramino_4
-    elif tetramino == tetramino_5:
+    elif tetramino_normal == tetramino_5:
         return tetramino_5_bis
-    elif tetramino == tetramino_5_bis:
+    elif tetramino_normal == tetramino_5_bis:
         return tetramino_5_ter
-    elif tetramino == tetramino_5_ter:
+    elif tetramino_normal == tetramino_5_ter:
         return tetramino_5_quatro
-    elif tetramino == tetramino_5_quatro:
+    elif tetramino_normal == tetramino_5_quatro:
         return tetramino_5
-    elif tetramino == tetramino_6:
+    elif tetramino_normal == tetramino_6:
         return tetramino_6_bis
-    elif tetramino == tetramino_6_bis:
+    elif tetramino_normal == tetramino_6_bis:
         return tetramino_6
+    
+def set_rotate_termino_survival():
+    global tetramino_survival
+    if tetramino_survival == tetramino_1:
+        return tetramino_1_bis
+    elif tetramino_survival == tetramino_1_bis:
+        return tetramino_1_ter
+    elif tetramino_survival == tetramino_1_ter:
+        return tetramino_1_quatro
+    elif tetramino_survival == tetramino_1_quatro:
+        return tetramino_1
+    elif tetramino_survival == tetramino_2:
+        return tetramino_2_bis
+    elif tetramino_survival == tetramino_2_bis:
+        return tetramino_2
+    elif tetramino_survival == tetramino_3:
+        return tetramino_3_bis
+    elif tetramino_survival == tetramino_3_bis:
+        return tetramino_3
+    elif tetramino_survival == tetramino_4:
+        return tetramino_4
+    elif tetramino_survival == survival_tetra_5:
+        return survival_tetra_5_bis
+    elif tetramino_survival == survival_tetra_5_bis:
+        return survival_tetra_5_ter
+    elif tetramino_survival == survival_tetra_5_ter:
+        return survival_tetra_5_quatro
+    elif tetramino_survival == survival_tetra_5_quatro:
+        return survival_tetra_5
+    elif tetramino_survival == survival_tetra_6:
+        return survival_tetra_6_bis
+    elif tetramino_survival == survival_tetra_6_bis:
+        return survival_tetra_6
 
-def set_tetramino(tetraminos):
-    global tetramino
-    tetramino = tetraminos
+def set_tetramino_normal(tetraminos):
+    global tetramino_normal
+    tetramino_normal = tetraminos
+def set_tetramino_survival(tetraminos):
+    global tetramino_survival
+    tetramino_survival = tetraminos
 
-def get_tetramino():
-    global tetramino
-    return tetramino
+def get_tetramino_normal():
+    global tetramino_normal
+    return tetramino_normal
+def get_tetramino_survival():
+    global tetramino_survival
+    return tetramino_survival
 
-# Gestion des coordonées des tetramino et du remplissage de la grille 
+# Gestion des coordonées des tetramino et du remplissage de la grille en mode normal
 grid = [[0] * 20 for _ in range(31)]
 tetraminos_x = 10
-tetraminos_y = 1
+tetraminos_y = 0
 
 def set_grid(tetramino, draw_x, draw_y, taille_cote):
     global grid
@@ -166,6 +227,39 @@ def get_tetraminos_y():
 def get_grid():
     global grid
     return grid
+
+# Gestion des coordonées des tetramino et du remplissage de la grille en mode survival
+survival_grid = [[0] * 14 for _ in range(21)]
+survival_tetraminos_x = 7
+
+def set_survival_grid(tetramino, draw_x, draw_y, taille_cote):
+    global survival_grid
+    for coord in tetramino:
+        x = (draw_x + coord[1] * survival_tile_size - survival_grid_start_x) // survival_tile_size
+        y = (draw_y + coord[0] * survival_tile_size) // survival_tile_size
+        set_survival_grid_value(y, x, 1)
+
+def set_survival_grid_value(y, x, value):
+    global survival_grid
+    if 0 <= y < len(survival_grid) and 0 <= x < len(survival_grid[0]):
+        survival_grid[y][x] = value
+
+def set_survival_tetraminos_x(value):
+    global survival_tetraminos_x
+    if value == 1:
+        survival_tetraminos_x += 1
+    elif value == -1:
+        survival_tetraminos_x -= 1
+    else:
+        survival_tetraminos_x = value
+
+def get_survival_tetraminos_x():
+    global survival_tetraminos_x
+    return survival_tetraminos_x
+
+def get_survival_grid():
+    global survival_grid
+    return survival_grid
 
 completed_lignes = 0
 total_score = 0
@@ -230,9 +324,14 @@ def get_game_end():
     return game_end
 
 def set_initial_value():
-    global grid, tetraminos_x, tetraminos_y, completed_lignes, total_score, level, FPS
-    grid = [[0] * 20 for _ in range(31)]
-    tetraminos_x = 10
+    global grid, survival_grid, tetraminos_x, survival_tetraminos_x, tetraminos_y, completed_lignes, total_score, level, FPS
+    menu = get_menu
+    if menu == 1:
+        grid = [[0] * 20 for _ in range(31)]
+        tetraminos_x = 10
+    elif menu == 2:
+        survival_grid = [[0] * 20 for _ in range(31)]
+        survival_tetraminos_x = 10
     tetraminos_y = 1
     completed_lignes = 0
     total_score = 0

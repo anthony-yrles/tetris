@@ -16,8 +16,14 @@ while continuer:
         if event.type == Py.QUIT:
             continuer = False
         normal(event, barre_rect_normal)
+        survival(event, barre_rect_survival)
         play_again(event, rect_play_again_click)
-        tetramino = get_tetramino()
-        mouvement(event, tetramino)
+        menu = get_menu()
+        if menu == 1:
+            tetramino = get_tetramino_normal()
+            mouvement(event, tetramino)
+        elif menu == 2:
+            tetramino = get_tetramino_survival()
+            mouvement(event, tetramino)
     clock.tick(get_FPS())
     Py.display.update()
