@@ -1,5 +1,5 @@
 import pygame as Py
-import states as STATES
+from globales import states as STATES
 from render_menu import *
 from render_normal_mode import *
 from render_survival_mode import *

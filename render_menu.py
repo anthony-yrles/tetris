@@ -1,4 +1,5 @@
 from globals import *
+from globales import *
 
 def render_menu(font, tetris_font):
     Py.draw.rect(screen, Py.Color(255, 255, 255), rect_tetriste)

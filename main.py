@@ -3,6 +3,7 @@ from globals import *
 from render import *
 from event import *
 from clocking import *
+from globales import *
 
 Py.init()
 clock = Py.time.Clock()

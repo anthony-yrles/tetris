@@ -1,4 +1,5 @@
 from globals import *
+from globales import *
 from collision import *
 from remplissage import *
 from json_save import *

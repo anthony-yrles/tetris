@@ -1,7 +1,8 @@
 import pygame as Py
 import random
 import time
-from random import choice, randrange
+from random import randrange
+from globales import *
 
 screen = Py.display.set_mode((800, 600))
 get_color = lambda : (randrange(30, 256), randrange(30, 256), randrange(30, 256))
@@ -14,49 +15,6 @@ def set_menu(menu_on_clic):
 def get_menu():
     global menu
     return menu
-
-# Globals pour le render du menu
-
-image_bcg_menu = Py.image.load('./assets/images/bcg.jpg')
-image_barre_menu = Py.image.load('./assets/images/barre_2.jpg')
-rect_tetriste = Py.Rect(250, 20, 300, 60)
-barre_rect_normal = Py.Rect(50, 250, 300, 77)
-barre_rect_time_attack = Py.Rect(50, 450, 300, 77)
-barre_rect_survival = Py.Rect(450, 250, 300, 77)
-barre_rect_hall_of_fame = Py.Rect(450, 450, 300, 77)
-
-# Globals pour le render du normal
-
-rect_tetriste_normal = Py.Rect(500, 20, 250, 60)
-image_bcg_normal = Py.image.load('./assets/images/bcg_normal.jpg')
-rect_level = Py.Rect(500, 330, 100, 50)
-rect_level_count = Py.Rect(700, 330, 100, 50)
-rect_ligne = Py.Rect(500, 430, 100, 50)
-rect_ligne_count = Py.Rect(700, 430, 100, 50)
-rect_score = Py.Rect(500, 530, 100, 50)
-rect_score_count = Py.Rect(700, 530, 100, 50)
-rect_display_game = Py.Rect(50, 0, 400, 600)
-number_of_tile_x = 400 // 20
-number_of_tile_y = 600 // 20
-tile_size = 20
-grid_start_x = 50
-grid_start_y = 0
-
-# Globals pour le render du end_game normal
-rect_game_end = Py.Rect(0, 200, 800, 80)
-rect_play_again = Py.Rect(0, 300, 800, 80)
-rect_play_again_click = Py.Rect(270, 400, 300, 80)
-
-# Globals pour le render du survival_mode
-image_bcg_survival = Py.image.load('./assets/images/bcg_survival.jpg')
-rect_tetriste_survival = Py.Rect(50, 20, 250, 60)
-rect_temps_ecoule = Py.Rect(50, 250, 250, 60)
-rect_running_time = Py.Rect(50, 350, 250, 60)
-survival_tile_size = 30
-number_of_survival_tile_x = 420 // survival_tile_size
-number_of_survival_tile_y = 600 // survival_tile_size
-survival_grid_start_x = 350
-survival_grid_start_y = 0
 
 #Globals pour le render du Hall Of Fame
 image_bcg_hall_of_fame = Py.image.load('./assets/images/bcg_hall_of_fame.jpg')

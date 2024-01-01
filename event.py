@@ -1,5 +1,6 @@
 import pygame as Py
 from globals import *
+from globales import *
 from collision import *
 
 def normal(event, barre_rect_normal):

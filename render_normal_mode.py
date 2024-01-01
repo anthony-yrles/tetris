@@ -1,4 +1,5 @@
 from globals import *
+from globales import *
 from tetramino import *
 from render_game_end import *
 
