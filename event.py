@@ -1,5 +1,4 @@
 import pygame as Py
-from globals import *
 from globales import *
 from collision import *
 
@@ -70,7 +69,9 @@ def mouvement(event, tetramino):
                 if test_collision((0, 0), rotate_tetramino):
                     set_tetramino_survival(rotate_tetramino)
         elif event.key == Py.K_DOWN:
-            y_shift = 1
-            while test_collision((0, y_shift), tetramino):
-                y_shift += 1
-            set_tetraminos_y(get_tetraminos_y() + y_shift - 1)
+            game_end = get_game_end()
+            if not game_end:
+                y_shift = 1
+                while test_collision((0, y_shift), tetramino):
+                    y_shift += 1
+                set_tetraminos_y(get_tetraminos_y() + y_shift - 1)

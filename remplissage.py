@@ -1,4 +1,4 @@
-from globals import *
+from globales import *
 
 def test_ligne():
     global grid, survival_grid

@@ -1,4 +1,4 @@
-from globals import *
+from globales import *
 
 def test_collision(direction, tetramino):
     menu = get_menu()
@@ -23,7 +23,7 @@ def test_collision(direction, tetramino):
                 return False
         return True
 
-def test_loose():
+def test_lose():
     y = get_tetraminos_y()
     if y == 0:
         return True

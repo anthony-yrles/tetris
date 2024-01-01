@@ -1,4 +1,3 @@
-from globals import *
 from globales import *
 from collision import *
 from remplissage import *
@@ -19,7 +18,7 @@ def dessiner_tetramino(tile_size, new_score):
     if test_collision((0, 1), tetramino):
         set_tetraminos_y(1)
     else:
-        if not test_loose():
+        if not test_lose():
             if menu == 1:
                 set_grid(tetramino, draw_x, draw_y, tile_size)
                 set_tetramino_normal(random_tetramino(tetraminos_normal))

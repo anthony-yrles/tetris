@@ -1,5 +1,4 @@
 import pygame as Py
-from globals import *
 from rendering import *
 from event import *
 from clocking import *

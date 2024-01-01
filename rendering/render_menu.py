@@ -1,4 +1,3 @@
-from globals import *
 from globales import *
 
 def render_menu(font, tetris_font):

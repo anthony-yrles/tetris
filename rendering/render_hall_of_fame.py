@@ -1,4 +1,3 @@
-from globals import *
 from globales import *
 
 def render_hall_of_fame(tetris_font, font):

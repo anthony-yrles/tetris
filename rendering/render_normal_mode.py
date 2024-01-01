@@ -1,4 +1,3 @@
-from globals import *
 from globales import *
 from tetramino import *
 from rendering.render_game_end import *
