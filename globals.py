@@ -44,8 +44,6 @@ grid_start_y = 0
 
 # Globals pour le render du end_game normal
 rect_game_end = Py.Rect(0, 200, 800, 80)
-# rect_register = Py.Rect(0, 200, 800, 80)
-# rect_register_name = Py.Rect(270, 300, 300, 80)
 rect_play_again = Py.Rect(0, 300, 800, 80)
 rect_play_again_click = Py.Rect(270, 400, 300, 80)
 
@@ -59,6 +57,15 @@ number_of_survival_tile_x = 420 // survival_tile_size
 number_of_survival_tile_y = 600 // survival_tile_size
 survival_grid_start_x = 350
 survival_grid_start_y = 0
+
+#Globals pour le render du Hall Of Fame
+image_bcg_hall_of_fame = Py.image.load('./assets/images/bcg_hall_of_fame.jpg')
+rect_mode_normal = Py.Rect(200, 220, 400, 60)
+rect_mode_survival = Py.Rect(200, 320, 400, 60)
+rect_hall_of_fame = Py.Rect(150, 480, 500, 60)
+rect_premier = Py.Rect(300, 220, 200, 60)
+rect_deuxieme = Py.Rect(20, 320, 250, 60)
+rect_troisieme = Py.Rect(530, 380, 250, 60)
 
 # Globals pour les différents forme de tuiles en mode normal
 tetramino_1 = [[0, -1], [1, -1],[-1, 0], [0, 0],[-1, 1]]
@@ -94,17 +101,6 @@ tetraminos_survival = [tetramino_1, tetramino_2, tetramino_3, tetramino_4, survi
 def random_tetramino(tetraminos):
     tetramino = random.choice(tetraminos)
     return tetramino
-
-# next_tetramino = None
-
-# def set_next_tetramino(tetraminos):
-#     global next_tetramino
-#     tetramino = random.choice(tetraminos)
-#     next_tetramino = tetramino
-
-# def get_next_tetramino():
-#     global next_tetramino
-#     return next_tetramino
 
 tetramino_normal = random_tetramino(tetraminos_normal)
 tetramino_survival = random_tetramino(tetraminos_survival)

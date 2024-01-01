@@ -20,6 +20,9 @@ while continuer:
         normal(event, barre_rect_normal)
         survival(event, barre_rect_survival)
         play_again(event, rect_play_again_click)
+        hall_of_fame(event, barre_rect_hall_of_fame)
+        hall_of_fame_normal(event, rect_mode_normal)
+        hall_of_fame_survival(event, rect_mode_survival)
         if menu == 1:
             tetramino = get_tetramino_normal()
             mouvement(event, tetramino)

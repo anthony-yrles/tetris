@@ -16,6 +16,28 @@ def survival(event, barre_rect_survival):
             menu_on_clic = 2
             set_menu(menu_on_clic)
 
+def hall_of_fame(event, barre_rect_hall_of_fame):
+    if event.type == Py.MOUSEBUTTONDOWN:
+        pos = Py.mouse.get_pos()
+        if barre_rect_hall_of_fame.collidepoint(pos):
+            menu_on_clic = 4
+            set_menu(menu_on_clic)
+
+def hall_of_fame_normal(event, rect_mode_normal):
+    if event.type == Py.MOUSEBUTTONDOWN:
+        pos = Py.mouse.get_pos()
+        if rect_mode_normal.collidepoint(pos):
+            menu_on_clic = 5
+            set_menu(menu_on_clic)
+
+def hall_of_fame_survival(event, rect_mode_survival):
+    if event.type == Py.MOUSEBUTTONDOWN:
+        pos = Py.mouse.get_pos()
+        if rect_mode_survival.collidepoint(pos):
+            print('clic')
+            menu_on_clic = 6
+            set_menu(menu_on_clic)
+
 def play_again(event, rect_play_again_click):
     if event.type == Py.MOUSEBUTTONDOWN:
         pos = Py.mouse.get_pos()
