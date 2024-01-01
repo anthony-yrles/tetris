@@ -1,9 +1,11 @@
 from globales import *
+import time
 
-# Initialisation de la grille du mode survival + initialisation du point d'apparition en x.
+# Initialisation de la grille du mode survival + initialisation du point d'apparition en x + initialisation de l'heure de début
 # La gestion des y ne change pas entre le mode normal et celui ci, il n'ai donc pas necessaire de recréer de setteur et de getteur
 survival_grid = [[0] * 14 for _ in range(21)]
 survival_tetraminos_x = 7
+time_begin = time.time()
 
 # Setteur de la grille a chaque fois qu'elle se rempli
 def set_survival_grid(tetramino, draw_x, draw_y, taille_cote):
@@ -34,6 +36,11 @@ def set_survival_tetraminos_x(value):
     else:
         survival_tetraminos_x = value
 
+# Setteur de la nouvelle heure de début en cas de relance d'une partie
+def set_time_begin():
+    global time_begin
+    time_begin = time.time()
+
 # Getteur de grid, tetramino_x
 def get_survival_grid():
     global survival_grid
@@ -41,3 +48,6 @@ def get_survival_grid():
 def get_survival_tetraminos_x():
     global survival_tetraminos_x
     return survival_tetraminos_x
+def get_time_begin():
+    global time_begin
+    return time_begin

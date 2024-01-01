@@ -16,6 +16,15 @@ def survival(event, barre_rect_survival):
             menu_on_clic = 2
             set_menu(menu_on_clic)
 
+def return_button(event, rect_return):
+    game_end = get_game_end()
+    if game_end == 1:
+        if event.type == Py.MOUSEBUTTONDOWN:
+            pos = Py.mouse.get_pos()
+            if rect_return.collidepoint(pos):
+                menu_on_clic = 0
+                set_menu(menu_on_clic)
+
 def hall_of_fame(event, barre_rect_hall_of_fame):
     if event.type == Py.MOUSEBUTTONDOWN:
         pos = Py.mouse.get_pos()
@@ -24,19 +33,31 @@ def hall_of_fame(event, barre_rect_hall_of_fame):
             set_menu(menu_on_clic)
 
 def hall_of_fame_normal(event, rect_mode_normal):
-    if event.type == Py.MOUSEBUTTONDOWN:
-        pos = Py.mouse.get_pos()
-        if rect_mode_normal.collidepoint(pos):
-            menu_on_clic = 5
-            set_menu(menu_on_clic)
+    menu = get_menu()
+    if menu == 4:
+        if event.type == Py.MOUSEBUTTONDOWN:
+            pos = Py.mouse.get_pos()
+            if rect_mode_normal.collidepoint(pos):
+                menu_on_clic = 5
+                set_menu(menu_on_clic)
 
 def hall_of_fame_survival(event, rect_mode_survival):
-    if event.type == Py.MOUSEBUTTONDOWN:
-        pos = Py.mouse.get_pos()
-        if rect_mode_survival.collidepoint(pos):
-            print('clic')
-            menu_on_clic = 6
-            set_menu(menu_on_clic)
+    menu = get_menu()
+    if menu == 4:
+        if event.type == Py.MOUSEBUTTONDOWN:
+            pos = Py.mouse.get_pos()
+            if rect_mode_survival.collidepoint(pos):
+                menu_on_clic = 6
+                set_menu(menu_on_clic)
+
+def hall_of_fame_return(event, rect_return_hall):
+    menu = get_menu()
+    if menu == 4 or menu == 5 or menu == 6:
+        if event.type == Py.MOUSEBUTTONDOWN:
+            pos = Py.mouse.get_pos()
+            if rect_return_hall.collidepoint(pos):
+                menu_on_clic = 0
+                set_menu(menu_on_clic)
 
 def play_again(event, rect_play_again_click):
     if event.type == Py.MOUSEBUTTONDOWN:

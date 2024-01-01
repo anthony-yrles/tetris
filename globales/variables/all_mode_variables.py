@@ -1,5 +1,5 @@
 from .mode_normal import set_grid_initial
-from .mode_survival import set_survival_grid_initial
+from .mode_survival import set_survival_grid_initial, set_time_begin
 
 # Initialisation des variables
 menu = 0
@@ -51,13 +51,14 @@ def set_time_end_game(time_running):
 
 #Setteur pour remettre à zéro toutes les variables en cas de redemarrage d'une partie
 def set_initial_value():
-    global tetraminos_x, survival_tetraminos_x, tetraminos_y, completed_lignes, total_score, level, FPS
+    global tetraminos_x, survival_tetraminos_x, tetraminos_y, completed_lignes, total_score, level, FPS, time_begin
     menu = get_menu()
     if menu == 1:
         set_grid_initial([[0] * 20 for _ in range(31)], 10)
         tetraminos_x = 10
     elif menu == 2:
         set_survival_grid_initial([[0] * 14 for _ in range(21)], 7)
+        set_time_begin()
         survival_tetraminos_x = 7
     tetraminos_y = 1
     completed_lignes = 0
