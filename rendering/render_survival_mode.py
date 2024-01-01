@@ -1,6 +1,7 @@
 from globals import *
+from globales import *
 from tetramino import *
-from render_game_end import *
+from rendering.render_game_end import *
 from clocking import *
 
 def render_survival_mode(tetris_font, font):

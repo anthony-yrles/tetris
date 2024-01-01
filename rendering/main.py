@@ -1,9 +1,10 @@
 import pygame as Py
 from globales import states as STATES
-from render_menu import *
-from render_normal_mode import *
-from render_survival_mode import *
-from render_hall_of_fame import *
+from .render_menu import *
+from .render_game_end import *
+from .render_normal_mode import *
+from .render_survival_mode import *
+from .render_hall_of_fame import *
 
 def render(font, tetris_font, tile_size):
     menu = get_menu()

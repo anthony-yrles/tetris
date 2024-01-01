@@ -1,4 +1,5 @@
 from globals import *
+from globales import *
 
 def render_end_game(tetris_font, font, score):
     screen.fill((0,0,0))

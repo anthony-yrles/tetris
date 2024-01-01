@@ -1,7 +1,7 @@
 from globals import *
 from globales import *
 from tetramino import *
-from render_game_end import *
+from rendering.render_game_end import *
 
 def render_normal_mode(font, tetris_font, tile_size):
     screen.fill((0,0,0))

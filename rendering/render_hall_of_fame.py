@@ -1,4 +1,5 @@
 from globals import *
+from globales import *
 
 def render_hall_of_fame(tetris_font, font):
     screen.blit(image_bcg_hall_of_fame, (0,0))

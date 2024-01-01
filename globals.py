@@ -16,15 +16,6 @@ def get_menu():
     global menu
     return menu
 
-#Globals pour le render du Hall Of Fame
-image_bcg_hall_of_fame = Py.image.load('./assets/images/bcg_hall_of_fame.jpg')
-rect_mode_normal = Py.Rect(200, 220, 400, 60)
-rect_mode_survival = Py.Rect(200, 320, 400, 60)
-rect_hall_of_fame = Py.Rect(150, 480, 500, 60)
-rect_premier = Py.Rect(300, 220, 200, 60)
-rect_deuxieme = Py.Rect(20, 320, 250, 60)
-rect_troisieme = Py.Rect(530, 380, 250, 60)
-
 # Globals pour les différents forme de tuiles en mode normal
 tetramino_1 = [[0, -1], [1, -1],[-1, 0], [0, 0],[-1, 1]]
 tetramino_1_bis = [[-1, 0],[0, 0],[0, 1], [-1, -1],[1, 1]]
@@ -51,8 +42,8 @@ survival_tetra_6 = [[-2, 0],[-1, 0],[0, 0],[1, 0],[2, 0]]
 survival_tetra_6_bis = [[0, -2],[0, -1],[0, 0],[0, 1],[0, 2]]
 
 # Création d'une liste contenant les différentes formes
-# tetraminos_normal = [tetramino_1, tetramino_2, tetramino_3, tetramino_4, tetramino_5, tetramino_6]
-tetraminos_normal = [tetramino_4, tetramino_6]
+tetraminos_normal = [tetramino_1, tetramino_2, tetramino_3, tetramino_4, tetramino_5, tetramino_6]
+# tetraminos_normal = [tetramino_4, tetramino_6]
 tetraminos_survival = [tetramino_1, tetramino_2, tetramino_3, tetramino_4, survival_tetra_5, survival_tetra_6]
 # tetraminos_survival = [survival_tetra_6]
 
