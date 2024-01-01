@@ -14,8 +14,6 @@ def dessiner_tetramino(tile_size):
         draw_y = 0 + get_tetraminos_y() * tile_size
         tetramino = get_tetramino_survival()
     dessiner_tetramino_aux(tetramino, draw_x, draw_y, tile_size)
-    # next_tetramino = draw_next_tetarmino(tile_size)
-    # set_next_tetramino(tetraminos)
     if test_collision((0, 1), tetramino):
         set_tetraminos_y(1)
     else:
@@ -35,21 +33,7 @@ def dessiner_tetramino(tile_size):
             set_initial_value()
             set_game_end()
 
-# def draw_next_tetarmino(tile_size):
-#     next_tetramino = get_next_tetramino()
-
-#     # Si next_tetramino n'est pas défini, générez-en un nouveau
-#     if next_tetramino is None:
-#         next_tetramino = random_tetramino(tetraminos)
-
-#     for coord in next_tetramino:
-#         rect_x = 620 + coord[1] * tile_size
-#         rect_y = 150 + coord[0] * tile_size
-#         Py.draw.rect(screen, (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)), (rect_x, rect_y, tile_size, tile_size))
-#     return next_tetramino
-
 def dessiner_tetramino_aux(tetramino, draw_x, draw_y, tile_size):
-    # if tetramino is not None:
     if menu == 1:
         tile_size = tile_size
     elif menu == 2:

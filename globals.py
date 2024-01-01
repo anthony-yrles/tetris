@@ -1,5 +1,6 @@
 import pygame as Py
 import random
+import time
 from random import choice, randrange
 
 screen = Py.display.set_mode((800, 600))
@@ -42,11 +43,11 @@ grid_start_x = 50
 grid_start_y = 0
 
 # Globals pour le render du end_game normal
-rect_game_end = Py.Rect(0, 100, 800, 80)
-rect_register = Py.Rect(0, 200, 800, 80)
-rect_register_name = Py.Rect(270, 300, 300, 80)
-rect_play_again = Py.Rect(0, 400, 800, 80)
-rect_play_again_click = Py.Rect(270, 500, 300, 80)
+rect_game_end = Py.Rect(0, 200, 800, 80)
+# rect_register = Py.Rect(0, 200, 800, 80)
+# rect_register_name = Py.Rect(270, 300, 300, 80)
+rect_play_again = Py.Rect(0, 300, 800, 80)
+rect_play_again_click = Py.Rect(270, 400, 300, 80)
 
 # Globals pour le render du survival_mode
 image_bcg_survival = Py.image.load('./assets/images/bcg_survival.jpg')
@@ -85,7 +86,8 @@ survival_tetra_6 = [[-2, 0],[-1, 0],[0, 0],[1, 0],[2, 0]]
 survival_tetra_6_bis = [[0, -2],[0, -1],[0, 0],[0, 1],[0, 2]]
 
 # Création d'une liste contenant les différentes formes
-tetraminos_normal = [tetramino_1, tetramino_2, tetramino_3, tetramino_4, tetramino_5, tetramino_6]
+# tetraminos_normal = [tetramino_1, tetramino_2, tetramino_3, tetramino_4, tetramino_5, tetramino_6]
+tetraminos_normal = [tetramino_4, tetramino_6]
 tetraminos_survival = [tetramino_1, tetramino_2, tetramino_3, tetramino_4, survival_tetra_5, survival_tetra_6]
 # tetraminos_survival = [survival_tetra_6]
 
@@ -204,6 +206,11 @@ def set_grid_value(y, x, value):
     if 0 <= y < len(grid) and 0 <= x < len(grid[0]):
         grid[y][x] = value
 
+def set_grid_initial(new_grid, new_tetraminos_x):
+    global grid, tetraminos_x
+    grid = new_grid
+    tetraminos_x = new_tetraminos_x
+
 def set_tetraminos_x(value):
     global tetraminos_x
     if value == 1:
@@ -245,6 +252,11 @@ def set_survival_grid_value(y, x, value):
     global survival_grid
     if 0 <= y < len(survival_grid) and 0 <= x < len(survival_grid[0]):
         survival_grid[y][x] = value
+
+def set_survival_grid_initial(new_survival_grid, new_survival_tetraminos_x):
+    global survival_grid, survival_tetraminos_x
+    survival_grid = new_survival_grid
+    survival_tetraminos_x = new_survival_tetraminos_x
 
 def set_survival_tetraminos_x(value):
     global survival_tetraminos_x
@@ -326,16 +338,28 @@ def get_game_end():
     return game_end
 
 def set_initial_value():
-    global grid, survival_grid, tetraminos_x, survival_tetraminos_x, tetraminos_y, completed_lignes, total_score, level, FPS
-    menu = get_menu
+    global tetraminos_x, survival_tetraminos_x, tetraminos_y, completed_lignes, total_score, level, FPS
+    menu = get_menu()
     if menu == 1:
-        grid = [[0] * 20 for _ in range(31)]
+        set_grid_initial([[0] * 20 for _ in range(31)], 10)
         tetraminos_x = 10
     elif menu == 2:
-        survival_grid = [[0] * 20 for _ in range(31)]
-        survival_tetraminos_x = 10
+        set_survival_grid_initial([[0] * 14 for _ in range(21)], 7)
+        survival_tetraminos_x = 7
     tetraminos_y = 1
     completed_lignes = 0
     total_score = 0
     level = 1
     FPS = 1
+
+
+time_begin = time.time()
+time_end_game = 0
+time_running = time.time()
+
+def set_time_end_game(time_running):
+    global time_end_game
+    time_end_game = time_running
+def get_time_end_game():
+    global time_end_game
+    return time_end_game
