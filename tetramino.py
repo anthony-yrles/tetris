@@ -1,8 +1,9 @@
 from globals import *
 from collision import *
 from remplissage import *
+from json_save import *
 
-def dessiner_tetramino(tile_size):
+def dessiner_tetramino(tile_size, new_score):
     menu = get_menu()
     if menu == 1:
         draw_x = grid_start_x + get_tetraminos_x() * tile_size
@@ -30,6 +31,10 @@ def dessiner_tetramino(tile_size):
             test_ligne()
             dessiner_tetramino_aux(tetramino, draw_x, draw_y, tile_size)
         else:
+            if menu == 1:
+                save_score(new_score)
+            if menu == 2:
+                save_time(new_score)
             set_initial_value()
             set_game_end()
 

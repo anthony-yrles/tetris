@@ -31,7 +31,7 @@ def render_survival_mode(tetris_font, font):
                     set_tetraminos_y(get_tetraminos_y())
                     rect_interior_game = Py.Rect(survival_grid_start_x + j * survival_tile_size + 1, survival_grid_start_y + i * survival_tile_size + 1, survival_tile_size - 1, survival_tile_size - 1)
                     Py.draw.rect(screen, get_color(), rect_interior_game)
-        dessiner_tetramino(survival_tile_size)
+        dessiner_tetramino(survival_tile_size, int(time_running))
     if game_end:
         time_running = get_time_end_game()
         score = str(int(time_running))

@@ -45,7 +45,7 @@ def render_normal_mode(font, tetris_font, tile_size):
                     set_tetraminos_y(get_tetraminos_y())
                     rect_interior_game = Py.Rect(grid_start_x + j * tile_size + 1, grid_start_y + i * tile_size + 1, tile_size - 1, tile_size - 1)
                     Py.draw.rect(screen, (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)), rect_interior_game)
-        dessiner_tetramino(tile_size)
+        dessiner_tetramino(tile_size, get_total_score())
     if game_end:
         score = str(get_total_score())
         render_end_game(tetris_font, font, score)
