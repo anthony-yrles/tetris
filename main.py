@@ -25,6 +25,9 @@ while continuer:
         hall_of_fame_normal(event, rect_mode_normal)
         hall_of_fame_survival(event, rect_mode_survival)
         hall_of_fame_return(event, rect_return_hall)
+        hall_of_shame(event, barre_rect_hall_of_shame)
+        hall_of_shame_normal(event, rect_mode_normal)
+        hall_of_shame_survival(event, rect_mode_survival)
         if menu == 1:
             tetramino = get_tetramino_normal()
             mouvement(event, tetramino)

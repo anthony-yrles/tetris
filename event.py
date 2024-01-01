@@ -3,18 +3,22 @@ from globales import *
 from collision import *
 
 def normal(event, barre_rect_normal):
-    if event.type == Py.MOUSEBUTTONDOWN:
-        pos = Py.mouse.get_pos()
-        if barre_rect_normal.collidepoint(pos):
-            menu_on_clic = 1
-            set_menu(menu_on_clic)
+    menu = get_menu()
+    if menu == 0:
+        if event.type == Py.MOUSEBUTTONDOWN:
+            pos = Py.mouse.get_pos()
+            if barre_rect_normal.collidepoint(pos):
+                menu_on_clic = 1
+                set_menu(menu_on_clic)
             
 def survival(event, barre_rect_survival):
-    if event.type == Py.MOUSEBUTTONDOWN:
-        pos = Py.mouse.get_pos()
-        if barre_rect_survival.collidepoint(pos):
-            menu_on_clic = 2
-            set_menu(menu_on_clic)
+    menu = get_menu()
+    if menu == 0:
+        if event.type == Py.MOUSEBUTTONDOWN:
+            pos = Py.mouse.get_pos()
+            if barre_rect_survival.collidepoint(pos):
+                menu_on_clic = 2
+                set_menu(menu_on_clic)
 
 def return_button(event, rect_return):
     game_end = get_game_end()
@@ -26,11 +30,13 @@ def return_button(event, rect_return):
                 set_menu(menu_on_clic)
 
 def hall_of_fame(event, barre_rect_hall_of_fame):
-    if event.type == Py.MOUSEBUTTONDOWN:
-        pos = Py.mouse.get_pos()
-        if barre_rect_hall_of_fame.collidepoint(pos):
-            menu_on_clic = 4
-            set_menu(menu_on_clic)
+    menu = get_menu()
+    if menu == 0:
+        if event.type == Py.MOUSEBUTTONDOWN:
+            pos = Py.mouse.get_pos()
+            if barre_rect_hall_of_fame.collidepoint(pos):
+                menu_on_clic = 4
+                set_menu(menu_on_clic)
 
 def hall_of_fame_normal(event, rect_mode_normal):
     menu = get_menu()
@@ -50,9 +56,36 @@ def hall_of_fame_survival(event, rect_mode_survival):
                 menu_on_clic = 6
                 set_menu(menu_on_clic)
 
+def hall_of_shame(event, barre_rect_hall_of_shame):
+    menu = get_menu()
+    if menu == 0:
+        if event.type == Py.MOUSEBUTTONDOWN:
+            pos = Py.mouse.get_pos()
+            if barre_rect_hall_of_shame.collidepoint(pos):
+                menu_on_clic = 7
+                set_menu(menu_on_clic)
+
+def hall_of_shame_normal(event, rect_mode_normal):
+    menu = get_menu()
+    if menu == 7:
+        if event.type == Py.MOUSEBUTTONDOWN:
+            pos = Py.mouse.get_pos()
+            if rect_mode_normal.collidepoint(pos):
+                menu_on_clic = 8
+                set_menu(menu_on_clic)
+                
+def hall_of_shame_survival(event, rect_mode_survival):
+    menu = get_menu()
+    if menu == 7:
+        if event.type == Py.MOUSEBUTTONDOWN:
+            pos = Py.mouse.get_pos()
+            if rect_mode_survival.collidepoint(pos):
+                menu_on_clic = 9
+                set_menu(menu_on_clic)
+
 def hall_of_fame_return(event, rect_return_hall):
     menu = get_menu()
-    if menu == 4 or menu == 5 or menu == 6:
+    if menu == 4 or menu == 5 or menu == 6 or menu == 7 or menu == 8 or menu == 9:
         if event.type == Py.MOUSEBUTTONDOWN:
             pos = Py.mouse.get_pos()
             if rect_return_hall.collidepoint(pos):

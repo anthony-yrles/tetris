@@ -1,9 +1,10 @@
 from globales import *
 
 def render_menu(font, tetris_font):
+    screen.fill((0,0,0))
     Py.draw.rect(screen, Py.Color(255, 255, 255), rect_tetriste)
     Py.draw.rect(screen, Py.Color(255, 255, 255), barre_rect_normal)
-    Py.draw.rect(screen, Py.Color(255, 255, 255), barre_rect_time_attack)
+    Py.draw.rect(screen, Py.Color(255, 255, 255), barre_rect_hall_of_shame)
     Py.draw.rect(screen, Py.Color(255, 255, 255), barre_rect_survival)
     Py.draw.rect(screen, Py.Color(255, 255, 255), barre_rect_hall_of_fame)
     screen.blit(image_bcg_menu, (0,0))
@@ -13,8 +14,8 @@ def render_menu(font, tetris_font):
     text_normal = font.render('Normal', True, ('blue'))
     normal_text = text_normal.get_rect(center=barre_rect_normal.center)
     screen.blit(text_normal, normal_text)
-    text_time_attack = font.render('Time attack', True, ('blue'))
-    time_attack_text = text_time_attack.get_rect(center=barre_rect_time_attack.center)
+    text_time_attack = font.render('Hall of Shame', True, ('blue'))
+    time_attack_text = text_time_attack.get_rect(center=barre_rect_hall_of_shame.center)
     screen.blit(text_time_attack, time_attack_text)
     text_survival = font.render('Survival', True, ('blue'))
     survival_text = text_survival.get_rect(center=barre_rect_survival.center)
